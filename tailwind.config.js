@@ -32,6 +32,7 @@ export default {
         "main-800": "#1E2640",
         "main-900": "#0F1320",
         paragh: "#E5E5E5",
+        error: "#ee3131",
       },
       borderColor: {
         "main-50": "#EDEFF6",

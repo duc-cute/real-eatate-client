@@ -12,6 +12,8 @@ import {
 } from "./pages/public";
 import { useAppStore } from "./store/useAppStore";
 import { Modal } from "./components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /** @format */
 function App() {
@@ -29,6 +31,19 @@ function App() {
           <Route path={path.HOME} element={<Home />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <ToastContainer />
     </>
   );
 }

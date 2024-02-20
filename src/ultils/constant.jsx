@@ -29,3 +29,14 @@ export const navigation = [
     title: "SEARCH",
   },
 ];
+
+export const optionsAccount = [
+  {
+    id: "user",
+    value: "USER",
+  },
+  {
+    id: "agent",
+    value: "AGENT",
+  },
+];
