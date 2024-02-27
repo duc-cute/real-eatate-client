@@ -9,11 +9,13 @@ import { optionsAccount } from "~/ultils/constant";
 import { apiRegister, apiSignIn } from "~/apis/user";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import withRouter from "~/hocs/withRouter";
+import { useUserStore } from "~/store/useUserStore";
 const { IoClose } = icons;
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setModal } = useAppStore();
+  const { token, setToken, getCurrent } = useUserStore();
 
   const {
     register,
@@ -22,6 +24,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const handleSubmitForm = async (data) => {
+    setIsLoading(true);
     if (isSignUp) {
       const res = await apiRegister(data);
 
@@ -39,10 +42,14 @@ const Login = () => {
       const { password, phone, ...ortherData } = data;
       const res = await apiSignIn({ password, phone });
       if (res.success) {
+        getCurrent();
+        toast.success(res.mes);
         setModal({ isShowModal: false, contentModal: null });
-        toast.success(res?.mes);
-      } else toast.error(res?.mes);
+
+        setToken(res.accessToken);
+      } else toast.error(res.mes);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -135,8 +142,9 @@ const Login = () => {
           <Button
             type="submit"
             className={"bg-main-700 font-medium mt-5 text-white"}
+            disabled={isLoading}
           >
-            Sign In
+            {isSignUp ? "Sign Up" : "Sign In"}
           </Button>
           <span className="text-center text-main-700 font-medium py-4">
             Forgot the password ?

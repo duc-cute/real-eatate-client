@@ -6,7 +6,7 @@ import { navigation } from "~/ultils/constant";
 import { Button, Login } from "..";
 import withRouter from "~/hocs/withRouter";
 import { useAppStore } from "~/store/useAppStore";
-const Navigation = ({ navigate, location }) => {
+const Navigation = ({ location }) => {
   const { setModal } = useAppStore();
   const isHomePage = location.pathname === "/";
   const textIsHomePage = isHomePage ? "text-main-50" : "text-main-900";

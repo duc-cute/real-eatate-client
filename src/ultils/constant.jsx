@@ -1,6 +1,8 @@
 /** @format */
 
 import path from "./path";
+import icons from "./icons";
+const { BsFillHouseGearFill, MdOutlineDashboard } = icons;
 
 export const navigation = [
   {
@@ -38,5 +40,33 @@ export const optionsAccount = [
   {
     id: "agent",
     value: "AGENT",
+  },
+];
+
+export const sidebarAdmin = [
+  {
+    id: 1,
+    path: `/${path.ADMIN_LAYOUT}/${path.DASHBOARD}`,
+    title: "dashboard",
+    icon: <MdOutlineDashboard />,
+    type: "SINGLE",
+  },
+  {
+    id: 2,
+    title: "Property Type",
+    type: "PARENT",
+    icon: <BsFillHouseGearFill />,
+    sub: [
+      {
+        id: 2.1,
+        title: "Manage Property Type",
+        path: `/${path.ADMIN_LAYOUT}/${path.MANAGE_PROPERTY_TYPE}`,
+      },
+      {
+        id: 2.2,
+        title: "Create Property Type",
+        path: `/${path.ADMIN_LAYOUT}/${path.CREATE_PROPERTY_TYPE}`,
+      },
+    ],
   },
 ];

@@ -1,6 +1,8 @@
 /** @format */
 
 import { Route, Routes } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+
 import path from "./ultils/path";
 import {
   AboutUs,
@@ -13,12 +15,22 @@ import {
 import { useAppStore } from "./store/useAppStore";
 import { Modal } from "./components";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useUserStore } from "./store/useUserStore";
+import {
+  CreatePropertyType,
+  DashBoard,
+  LayoutAdmin,
+  ManagePropertyType,
+} from "./pages/admin";
 
 /** @format */
 function App() {
   const { isShowModal } = useAppStore();
-  console.log("is", isShowModal);
+  const { getCurrent, token, current } = useUserStore();
+  useEffect(() => {
+    if (token) getCurrent();
+  }, []);
   return (
     <>
       {isShowModal && <Modal />}
@@ -29,6 +41,17 @@ function App() {
           <Route path={path.PROPERTIES} element={<Properties />} />
           <Route path={path.SEARCH} element={<Search />} />
           <Route path={path.HOME} element={<Home />} />
+        </Route>
+        <Route path={path.ADMIN_LAYOUT} element={<LayoutAdmin />}>
+          <Route path={path.DASHBOARD} element={<DashBoard />} />
+          <Route
+            path={path.MANAGE_PROPERTY_TYPE}
+            element={<ManagePropertyType />}
+          />
+          <Route
+            path={path.CREATE_PROPERTY_TYPE}
+            element={<CreatePropertyType />}
+          />
         </Route>
       </Routes>
       <ToastContainer
@@ -41,9 +64,8 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme="light"
       />
-      <ToastContainer />
     </>
   );
 }

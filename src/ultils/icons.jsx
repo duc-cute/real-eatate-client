@@ -9,6 +9,9 @@ import {
 } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { FiPhone } from "react-icons/fi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { BsFillHouseGearFill } from "react-icons/bs";
+import { FaCaretDown } from "react-icons/fa6";
 const icons = {
   FaFacebookF,
   FaDribbble,
@@ -17,6 +20,9 @@ const icons = {
   FaBehance,
   FiPhone,
   IoClose,
+  BsFillHouseGearFill,
+  MdOutlineDashboard,
+  FaCaretDown,
 };
 
 export default icons;
