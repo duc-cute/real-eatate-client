@@ -27,9 +27,11 @@ import {
 /** @format */
 function App() {
   const { isShowModal } = useAppStore();
-  const { getCurrent, token, current } = useUserStore();
+  const { getCurrent, token, current, getRoles, roles } = useUserStore();
   useEffect(() => {
     if (token) getCurrent();
+    getRoles();
+    console.log("current", current);
   }, []);
   return (
     <>

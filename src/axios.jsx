@@ -24,6 +24,23 @@ instance.interceptors.request.use(
   }
 );
 
+const handleRefreshToen = async () => {
+  try {
+    // Gọi API để lấy Access Token mới
+    const response = await axios.post("api/v1/auth/refresh-accesstoken", {});
+    console.log("res", response.data);
+    // Lưu trữ Access Token mới trong ứng dụng của bạn
+    const newAccessToken = response.data.newAccessToken;
+    // Làm bất cứ điều gì bạn muốn với Access Token mới, ví dụ: lưu vào local storage, cookie, hoặc biến global.
+
+    return newAccessToken;
+  } catch (error) {
+    console.error("Error refreshing Access Token:", error);
+    // Xử lý lỗi refresh token, có thể đưa người dùng đến trang đăng nhập lại
+    throw error;
+  }
+};
+
 // Add a response interceptor
 instance.interceptors.response.use(
   function (response) {

@@ -44,7 +44,7 @@ const SideBar = () => {
                   onClick={() => handleActiveTab(el.id)}
                   className="flex justify-between  items-center px-4 py-2 hover:bg-main-500   cursor-pointer"
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 select-none">
                     <span>{el.icon}</span>
                     {el.title}
                   </div>

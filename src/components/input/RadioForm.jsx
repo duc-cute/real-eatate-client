@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 const RadioForm = ({
   id,
@@ -10,17 +11,20 @@ const RadioForm = ({
   errors,
   disabled = false,
   options,
+  col,
 }) => {
   return (
     <div className="flex flex-col gap-3">
       <label className=" text-sm font-medium text-gray-900">{label}</label>
-      <div className="flex flex-col gap-1">
+      <div
+        className={twMerge(`flex justify-between  gap-1 ${col && "flex-col"}`)}
+      >
         {options?.map((el, index) => (
           <div key={index} className="flex items-center gap-1">
             <input
               id={el?.id}
               type="radio"
-              value={el?.value}
+              value={el?.code}
               name={id}
               disabled={disabled}
               {...register(id, validate)}
@@ -30,7 +34,7 @@ const RadioForm = ({
               htmlFor={el?.id}
               className="ms-2 text-sm font-medium text-gray-900 capitalize"
             >
-              {el?.id}
+              {el?.value}
             </label>
           </div>
         ))}

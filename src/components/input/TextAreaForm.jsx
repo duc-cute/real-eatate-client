@@ -2,34 +2,30 @@
 
 import React from "react";
 
-const InputForm = ({
-  label,
-  type = "text",
-  placeholder,
-  disabled = false,
-  style,
-  id,
-  errors,
+const TextAreaForm = ({
   register,
-  defaultValue,
   validate,
+  errors,
+  id,
+  label,
+  disabled,
+  placeholder,
 }) => {
   return (
-    <div>
+    <div className="">
       <label
         htmlFor={id}
         className="block mb-[6px] text-sm font-medium text-gray-900 "
       >
         {label}
       </label>
-      <input
-        type={type}
+      <textarea
         id={id}
-        disabled={disabled}
         {...register(id, validate)}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-main-500 block w-full p-2 "
+        rows="4"
+        className="block p-2.5 w-full text-sm outline-none text-gray-900  bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-main-500 "
         placeholder={placeholder}
-      />
+      ></textarea>
       {errors[id] && (
         <small className="text-[12px] text-error italic  ">
           {errors[id]?.message}
@@ -39,4 +35,4 @@ const InputForm = ({
   );
 };
 
-export default InputForm;
+export default TextAreaForm;

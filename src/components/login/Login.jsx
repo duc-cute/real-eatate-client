@@ -15,7 +15,7 @@ const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { setModal } = useAppStore();
-  const { token, setToken, getCurrent } = useUserStore();
+  const { token, setToken, getCurrent, roles } = useUserStore();
 
   const {
     register,
@@ -135,7 +135,7 @@ const Login = () => {
               label={"Type Account"}
               register={register}
               validate={{ required: "Please Choose type account!" }}
-              options={optionsAccount}
+              options={roles.filter((role) => role.code !== "ROL1")}
               errors={errors}
             />
           )}

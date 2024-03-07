@@ -60,6 +60,10 @@ export default {
         4: "4 4 0%",
         5: "5 5 0%",
       },
+      maxHeight: {
+        "title-admin": "70px",
+        "body-admin": "calc(100% - 70px)",
+      },
     },
   },
   plugins: [],

@@ -10,7 +10,7 @@ const LayoutAdmin = () => {
       <aside className="col-span-2 bg-main-200 h-full max-h-screen overflow-y-auto">
         <SideBar />
       </aside>
-      <div className="col-span-10 ">
+      <div className="col-span-10 h-screen">
         <Outlet />
       </div>
     </div>
