@@ -31,7 +31,6 @@ function App() {
   useEffect(() => {
     if (token) getCurrent();
     getRoles();
-    console.log("current", current);
   }, []);
   return (
     <>

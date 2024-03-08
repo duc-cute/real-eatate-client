@@ -4,17 +4,16 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { apiUploadImages } from "~/apis/beyond";
 import { GoTrash } from "react-icons/go";
-
-const FileForm = ({ label, id, validate, multiple, getImages }) => {
+import { AiOutlineLoading } from "react-icons/ai";
+import { twMerge } from "tailwind-merge";
+const FileForm = ({ label, id, errors, validate, multiple, getImages }) => {
   const [images, setImages] = useState([]);
-  const {
-    register,
-    formState: { errors },
-    watch,
-  } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, watch } = useForm();
   const handleUploadImage = async (files) => {
     let promises = [];
     let formData = new FormData();
+    setIsLoading(true);
     for (let file of files) {
       formData.append("file", file);
       formData.append(
@@ -25,6 +24,7 @@ const FileForm = ({ label, id, validate, multiple, getImages }) => {
     }
 
     const response = await Promise.all(promises);
+    console.log("res", response);
     if (response && response.length > 0) {
       const imagesFormat = response.map((res) => ({
         id: res.data.asset_id,
@@ -33,6 +33,7 @@ const FileForm = ({ label, id, validate, multiple, getImages }) => {
 
       setImages(imagesFormat);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
     if (watch(id) && watch(id) instanceof FileList && watch(id).length > 0) {
@@ -49,28 +50,41 @@ const FileForm = ({ label, id, validate, multiple, getImages }) => {
   };
 
   return (
-    <div>
+    <>
       <span className="block mb-[6px] text-sm font-medium text-gray-900 ">
         {label}
       </span>
-      <div className="flex gap-2">
+      <div className="flex gap-2 select-none">
         <label
           htmlFor={id}
           className="border border-dashed w-[100px] h-[100px] flex items-center justify-center border-[#d9d9d9] hover:border-blue-500 transition-all delay-100 bg-gray-50 rounded-lg"
         >
-          <div className="flex justify-center items-center flex-col gap-1 font-medium text-main-800">
-            <svg
-              viewBox="64 64 896 896"
-              focusable="false"
-              data-icon="plus"
-              width="1em"
-              height="1em"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
-              <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8z"></path>
-            </svg>
+          <div
+            className={twMerge(
+              `flex justify-center items-center flex-col gap-1 font-medium text-main-800 ${
+                isLoading && "text-main-400"
+              }`
+            )}
+          >
+            {isLoading ? (
+              <span className="animate-spin">
+                <AiOutlineLoading />
+              </span>
+            ) : (
+              <svg
+                viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="plus"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
+                <path d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8z"></path>
+              </svg>
+            )}
+
             <span>Upload</span>
           </div>
           <input
@@ -79,6 +93,7 @@ const FileForm = ({ label, id, validate, multiple, getImages }) => {
             type="file"
             className="hidden"
             multiple={multiple}
+            disabled={isLoading}
           />
         </label>
         {images && images.length > 0 && (
@@ -108,7 +123,7 @@ const FileForm = ({ label, id, validate, multiple, getImages }) => {
           {errors[id]?.message}
         </small>
       )}
-    </div>
+    </>
   );
 };
 

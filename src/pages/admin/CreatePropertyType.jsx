@@ -2,6 +2,8 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { apiCreatePropertyType } from "~/apis/propertyType";
 import {
   Button,
   FileForm,
@@ -18,10 +20,32 @@ const CreatePropertyType = () => {
     reset,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
+    clearErrors,
   } = useForm();
-  const handleCreatePropertyType = (data) => {
-    console.log("data", data);
+  const handleCreatePropertyType = async (data) => {
+    const { images, ...ortherData } = data;
+    console.log("image", images);
+    if (images && images.length < 1) {
+      setError("images", {
+        message: "Need Fill This Field",
+        type: "required",
+      });
+    } else {
+      const res = await apiCreatePropertyType({
+        ...ortherData,
+        image: images[0]?.path,
+      });
+      console.log("res", res);
+
+      if (res.success) toast.success("Create Property Type Is Successfully");
+      else toast.error(res.mes);
+    }
+  };
+  const getImages = (images) => {
+    clearErrors("images");
+    setValue("images", images);
   };
   return (
     <div className="font-main text-main-900 h-full">
@@ -37,7 +61,7 @@ const CreatePropertyType = () => {
       </Title>
       <form className="px-3 pt-3 flex flex-col gap-3 max-h-body-admin overflow-y-auto ">
         <InputForm
-          id={"property-name"}
+          id={"name"}
           label={"Property Type Name"}
           register={register}
           errors={errors}
@@ -51,12 +75,12 @@ const CreatePropertyType = () => {
           errors={errors}
         />
         <FileForm
-          id={"image-property"}
+          id={"images"}
+          register={register}
           label={"Image"}
           errors={errors}
           validate={{ required: "Need Fill This Field!" }}
-          multiple={true}
-          getImages={(images) => setValue("images", images)}
+          getImages={getImages}
         />
         {/* <TinyEditor
           id={"hihi"}
