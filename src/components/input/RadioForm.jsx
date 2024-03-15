@@ -22,7 +22,7 @@ const RadioForm = ({
         {options?.map((el, index) => (
           <div key={index} className="flex items-center gap-1">
             <input
-              id={el?.id}
+              id={el?.code}
               type="radio"
               value={el?.code}
               name={id}
@@ -31,7 +31,7 @@ const RadioForm = ({
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
             />
             <label
-              htmlFor={el?.id}
+              htmlFor={el?.code}
               className="ms-2 text-sm font-medium text-gray-900 capitalize"
             >
               {el?.value}

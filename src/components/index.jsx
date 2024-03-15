@@ -9,6 +9,7 @@ export { default as Login } from "./login/Login";
 export { default as InputForm } from "./input/InputForm";
 export { default as FileForm } from "./input/FileForm";
 export { default as TextAreaForm } from "./input/TextAreaForm";
+export { default as OTPInput } from "./input/OTPInput";
 export { default as RadioForm } from "./input/RadioForm";
 export { default as TinyEditor } from "./input/TinyEditor";
 

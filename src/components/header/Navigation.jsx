@@ -6,7 +6,10 @@ import { navigation } from "~/ultils/constant";
 import { Button, Login } from "..";
 import withRouter from "~/hocs/withRouter";
 import { useAppStore } from "~/store/useAppStore";
+import { useUserStore } from "~/store/useUserStore";
 const Navigation = ({ location }) => {
+  const { current } = useUserStore();
+  console.log("cu", current);
   const { setModal } = useAppStore();
   const isHomePage = location.pathname === "/";
   const textIsHomePage = isHomePage ? "text-main-50" : "text-main-900";
@@ -45,7 +48,9 @@ const Navigation = ({ location }) => {
               {nav.title}
             </NavLink>
           ))}
-          <Button handleOnClick={() => handleLogin()}>Add Listing</Button>
+          <Button handleOnClick={() => handleLogin()}>
+            {current ? "Add Listing" : "Sign In"}
+          </Button>
         </nav>
       </div>
     </div>

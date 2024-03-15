@@ -19,6 +19,11 @@ export const useUserStore = create(
         const roles = await apiGetRoles();
         if (roles.success) return set(() => ({ roles: roles?.roleUser }));
       },
+      logout: () =>
+        set(() => ({
+          current: null,
+          token: null,
+        })),
     }),
     {
       name: "real_state",

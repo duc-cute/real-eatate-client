@@ -14,9 +14,9 @@ const Button = ({
     <button
       type={type}
       className={twMerge(
-        `bg-transparent flex items-center gap-2 justify-center border border-white text-white rounded-md px-4 py-3 ${
+        `bg-transparent  flex items-center gap-2 justify-center border border-white text-white rounded-md px-4 py-3 ${
           className && className
-        }`
+        } ${disabled && "opacity-80"}`
       )}
       onClick={handleOnClick && handleOnClick}
       disabled={disabled}
