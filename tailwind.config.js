@@ -19,6 +19,7 @@ export default {
         "main-800": "#1E2640",
         "main-900": "#0F1320",
         overlay: "rgba(0,0,0,0.5)",
+        "overlay-user": "rgba(0,0,0,0.2)",
       },
       colors: {
         "main-50": "#EDEFF6",

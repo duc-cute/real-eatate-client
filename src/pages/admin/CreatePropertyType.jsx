@@ -33,6 +33,7 @@ const CreatePropertyType = () => {
         type: "required",
       });
     } else {
+      console.log("lot");
       const res = await apiCreatePropertyType({
         ...ortherData,
         image: images[0]?.path,

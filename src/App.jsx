@@ -44,7 +44,7 @@ function App() {
           <Route path={path.HOME} element={<Home />} />
         </Route>
         <Route path={path.ADMIN_LAYOUT} element={<LayoutAdmin />}>
-          <Route path={path.DASHBOARD} element={<DashBoard />} />
+          <Route path={path.ADMIN_DASHBOARD} element={<DashBoard />} />
           <Route
             path={path.MANAGE_PROPERTY_TYPE}
             element={<ManagePropertyType />}

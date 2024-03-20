@@ -70,3 +70,81 @@ export const sidebarAdmin = [
     ],
   },
 ];
+
+export const optionsUser = [
+  {
+    id: 1,
+    role: "ROL1",
+    title: "admin",
+    path: `/${path.ADMIN_LAYOUT}/${path.ADMIN_DASHBOARD}`,
+  },
+  {
+    id: 2,
+    role: "ROL3",
+    title: "owner",
+    path: `/${path.OWNER_LAYOUT}/${path.OWNER_DASHBOARD}`,
+  },
+  {
+    id: 3,
+    role: "ROL5",
+    title: "agent",
+    path: `/${path.AGENT_LAYOUT}/${path.AGENT_DASHBOARD}`,
+  },
+  {
+    id: 4,
+    role: "ROL7",
+    title: "user",
+    path: `/${path.USER_LAYOUT}/${path.USER_DASHBOARD}`,
+  },
+];
+
+export const optionsSort = [
+  {
+    id: 1,
+    title: "Price",
+    value: "price",
+  },
+  {
+    id: 2,
+    title: "Newest",
+    value: "-createdAt",
+  },
+  {
+    id: 3,
+    title: "Oldest",
+    value: "createdAt",
+  },
+  {
+    id: 3,
+    title: "Từ A -> Z",
+    value: "address",
+  },
+  {
+    id: 4,
+    title: "Từ Z -> A",
+    value: "address",
+  },
+];
+
+export const fieldFilter = [
+  {
+    id: 1,
+    title: "All Properties",
+    value: "all",
+  },
+  {
+    id: 2,
+    title: "For Buy",
+    value: "buy",
+  },
+  {
+    id: 3,
+    title: "For Sale",
+    value: "sale",
+  },
+  {
+    id: 4,
+    title: "For Rent",
+    value: "rent",
+  },
+];

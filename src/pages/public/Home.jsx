@@ -1,11 +1,12 @@
 /** @format */
 import homepage from "~/assets/homepage.png";
+import { Search } from "~/components";
 const Home = () => {
   return (
     <div className="bg-white w-full ">
       <div className="relative">
         <img src={homepage} alt="banner" />
-        <div className="text-white absolute  z-50 top-[50%] left-[50%] translate-x-[-50%] text-center">
+        <div className="text-white absolute  z-10 top-[50%] left-[50%] translate-x-[-50%] text-center">
           <h2 className="leading-[72px] font-medium  text-[50px]">
             Find Your Dream Home
           </h2>
@@ -16,7 +17,9 @@ const Home = () => {
           </span>
         </div>
       </div>
-      <div className="w-main">content</div>
+      <div className="w-main mx-auto flex justify-center">
+        <Search />
+      </div>
     </div>
   );
 };
