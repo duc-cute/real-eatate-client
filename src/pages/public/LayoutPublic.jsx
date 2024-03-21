@@ -1,11 +1,11 @@
 /** @format */
 
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { memo, useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { Navigation, TopHeader } from "~/components";
-import withRouter from "~/hocs/withRouter";
 
-const LayoutPublic = ({ location }) => {
+const LayoutPublic = () => {
+  const location = useLocation();
   const [isStickyHeader, setIsStickyHeader] = useState(false);
 
   const stickyHeaderFuc = () => {
@@ -31,4 +31,4 @@ const LayoutPublic = ({ location }) => {
   );
 };
 
-export default withRouter(LayoutPublic);
+export default memo(LayoutPublic);

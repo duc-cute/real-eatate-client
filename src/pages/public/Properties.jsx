@@ -2,16 +2,17 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import propertyBg from "~/assets/room.png";
-import { BreadCrumb, PropertyCard, SelectForm } from "~/components";
+import { BreadCrumb, Pagination, PropertyCard, SelectForm } from "~/components";
 import optionsIcon from "~/assets/ListBullets.png";
-import { HiChevronDown } from "react-icons/hi2";
 import { apiGetProperties } from "~/apis/property";
 import { useForm } from "react-hook-form";
 import { fieldFilter, optionsSort } from "~/ultils/constant";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const Properties = () => {
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState("");
   const [modeFilter, setModeFilter] = useState("all");
+  const [searchParams] = useSearchParams();
   const {
     register,
     watch,
@@ -19,16 +20,20 @@ const Properties = () => {
     handleSubmit,
   } = useForm();
 
-  const fetchProperties = async () => {
-    const res = await apiGetProperties();
+  const fetchProperties = async (params) => {
+    const res = await apiGetProperties({ limit: 12, ...params });
+    console.log("res", res.property);
     if (res.success) {
-      setProperties(res.property);
+      setProperties(res?.property);
     }
   };
-  console.log("wat", watch("sort"));
+
   useEffect(() => {
-    fetchProperties();
-  }, []);
+    const params = Object.fromEntries(searchParams);
+    console.log("param", params);
+    fetchProperties(params);
+  }, [searchParams]);
+
   return (
     <div className="bg-white w-full ">
       <div className="relative h-[275px]">
@@ -42,7 +47,7 @@ const Properties = () => {
           </div>
         </div>
       </div>
-      <div className="w-main mx-auto ">
+      <div className="w-main mx-auto px-[32px]">
         <div className="flex w-full justify-between items-center text-[#1B1D1F] h-6 mt-20 text-[14px]">
           <div className="flex items-center gap-3">
             <img
@@ -76,12 +81,15 @@ const Properties = () => {
           </ul>
         </div>
         <div className="grid grid-cols-3 mt-10 gap-5 bg-[#f6f7fa] shadow-2xl">
-          {properties.length > 0 &&
-            properties.map((property) => (
+          {properties?.rows?.length > 0 &&
+            properties?.rows.map((property) => (
               <Fragment key={property.id}>
                 <PropertyCard property={property} />
               </Fragment>
             ))}
+        </div>
+        <div className="flex justify-center mt-14 mb-10">
+          <Pagination total={properties.count} sibling={0} />
         </div>
       </div>
     </div>

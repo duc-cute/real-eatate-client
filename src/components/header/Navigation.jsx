@@ -1,14 +1,14 @@
 /** @format */
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "~/assets/HouseLine.svg";
 import logoMainColor from "~/assets/HouseLineMain.svg";
 import { navigation } from "~/ultils/constant";
 import { Button, Login } from "..";
-import withRouter from "~/hocs/withRouter";
 import { useAppStore } from "~/store/useAppStore";
 import { useUserStore } from "~/store/useUserStore";
-import { useEffect, useState } from "react";
-const Navigation = ({ location, isStickyHeader }) => {
+import { memo, useEffect, useState } from "react";
+const Navigation = ({ isStickyHeader }) => {
+  const location = useLocation();
   const { current } = useUserStore();
   const { setModal } = useAppStore();
   const isHomePage = location.pathname === "/";
@@ -74,4 +74,4 @@ const Navigation = ({ location, isStickyHeader }) => {
   );
 };
 
-export default withRouter(Navigation);
+export default memo(Navigation);

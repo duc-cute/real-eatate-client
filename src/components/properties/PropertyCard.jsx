@@ -10,9 +10,10 @@ import empty from "~/assets/emptyPro.jpg";
 import { HiPlus, HiOutlineHeart } from "react-icons/hi2";
 import { RxShare1 } from "react-icons/rx";
 import { IoBedOutline } from "react-icons/io5";
+import { Tag } from "..";
 const PropertyCard = ({ property }) => {
   return (
-    <div className="rounded-md bg-white">
+    <div className="rounded-md bg-white pb-3">
       <img
         className="w-full h-[240px] cursor-pointer object-cover rounded-tr-md rounded-tl-md"
         src={property.thumb || empty}
@@ -44,16 +45,19 @@ const PropertyCard = ({ property }) => {
         </div>
         <div className="w-full h-[1px] bg-gray-300 mt-4"></div>
       </div>
-      <div className="py-4 px-6 flex items-center justify-between">
+      <div className="pt-3 px-6 flex items-center justify-between gap-3">
         <div className="flex gap-3 items-center">
           <img
-            className="w-[42px] h-[42px] object-cover rounded-full"
+            className="w-[36px] h-[36px] object-cover rounded-full"
             src={property.rPostedBy?.avatar}
             alt="avatar"
           />
-          <span className="font-medium text-[18px] text-main-500">
-            {property.rPostedBy?.name}
-          </span>
+          <div className="font-medium  text-main-500  flex items-center gap-3 ">
+            <span className="line-clamp-1 text-[16px]">
+              {property.rPostedBy?.name}
+            </span>
+            <Tag status="warning">Agent</Tag>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <span className="bg-main-50 w-[30px] h-[30px] flex items-center justify-center text-xl p-1 text-main-600">
@@ -62,8 +66,29 @@ const PropertyCard = ({ property }) => {
           <span className="bg-main-50 w-[30px] h-[30px] flex items-center justify-center text-xl p-1 text-main-600">
             <HiOutlineHeart />
           </span>
+        </div>
+      </div>
+      <div className="pt-3 px-6 flex items-center justify-between gap-2">
+        <div className="flex gap-3 items-center">
+          <img
+            className="w-[36px] h-[36px] object-cover rounded-full"
+            src={property.rOwner?.avatar}
+            alt="avatar"
+          />
+          <div className="font-medium text-main-500 flex items-center gap-3">
+            <span className="line-clamp-1  text-[16px]">
+              {property.rOwner?.name}
+            </span>
+
+            <Tag>Owner</Tag>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
           <span className="bg-main-50 w-[30px] h-[30px] flex items-center justify-center text-xl p-1 text-main-600">
-            <HiPlus />
+            <RxShare1 />
+          </span>
+          <span className="bg-main-50 w-[30px] h-[30px] flex items-center justify-center text-xl p-1 text-main-600">
+            <HiOutlineHeart />
           </span>
         </div>
       </div>

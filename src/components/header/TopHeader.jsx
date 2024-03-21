@@ -38,8 +38,8 @@ const TopHeader = ({ isStickyHeader }) => {
     return () => {
       window.removeEventListener("click", handleShowOption);
     };
-  }),
-    [];
+  });
+
   return (
     <div
       className={twMerge(
