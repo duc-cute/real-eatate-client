@@ -41,7 +41,7 @@ const Navigation = ({ isStickyHeader }) => {
           />
           <div
             className={`flex flex-col ${
-              !isHomePage || (isStickyHeader && "text-main-700")
+              (!isHomePage || isStickyHeader) && "text-main-500"
             }`}
           >
             <h1 className="text-[24px] leading-6 font-medium">REIS</h1>

@@ -29,17 +29,17 @@ const SelectForm = ({
           id={id}
           disabled={disabled}
           {...register(id, validate)}
-          className="block py-2.5 px-3 w-full text-sm text-gray-500 bg-transparent  appearance-none  focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+          className="block py-2.5 px-2 font-normal w-full text-[16px] text-main-800 bg-transparent  appearance-none  focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           {...register(id, validate)}
         >
           <option value={""}>{placeholder}</option>
           {options?.map((el, index) => (
             <option key={index} value={el.value}>
-              {el?.title}
+              {el?.label}
             </option>
           ))}
         </select>
-        <span className="text-gray-600">
+        <span className="text-main-800">
           <HiChevronDown />
         </span>
       </div>

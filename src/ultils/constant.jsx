@@ -2,7 +2,15 @@
 
 import path from "./path";
 import icons from "./icons";
-const { BsFillHouseGearFill, MdOutlineDashboard } = icons;
+const {
+  BsFillHouseGearFill,
+  MdOutlineDashboard,
+  FaSortAlphaDown,
+  FaSortAlphaUp,
+  ImPriceTags,
+  MdTipsAndUpdates,
+  MdOutlineTipsAndUpdates,
+} = icons;
 
 export const navigation = [
   {
@@ -101,28 +109,33 @@ export const optionsUser = [
 export const optionsSort = [
   {
     id: 1,
-    title: "Price",
+    label: "Price",
     value: "price",
+    icon: <ImPriceTags />,
   },
   {
     id: 2,
-    title: "Newest",
-    value: "-createdAt",
-  },
-  {
-    id: 3,
-    title: "Oldest",
+    label: "Oldest",
     value: "createdAt",
+    icon: <MdTipsAndUpdates />,
   },
   {
     id: 3,
-    title: "Từ A -> Z",
-    value: "address",
+    label: "Latest",
+    value: "-createdAt",
+    icon: <MdOutlineTipsAndUpdates />,
   },
   {
     id: 4,
-    title: "Từ Z -> A",
-    value: "address",
+    label: "Từ A -> Z",
+    value: "name",
+    icon: <FaSortAlphaUp />,
+  },
+  {
+    id: 5,
+    label: "Từ Z -> A",
+    value: "-name",
+    icon: <FaSortAlphaDown />,
   },
 ];
 
@@ -132,19 +145,15 @@ export const fieldFilter = [
     title: "All Properties",
     value: "all",
   },
+
   {
     id: 2,
-    title: "For Buy",
-    value: "buy",
+    title: "For Sale",
+    value: "SALE",
   },
   {
     id: 3,
-    title: "For Sale",
-    value: "sale",
-  },
-  {
-    id: 4,
     title: "For Rent",
-    value: "rent",
+    value: "RENTAL",
   },
 ];

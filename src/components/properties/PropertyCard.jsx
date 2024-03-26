@@ -19,9 +19,9 @@ const PropertyCard = ({ property }) => {
         src={property.thumb || empty}
         alt="img"
       />
-      <div className="px-6 pt-6">
-        <h2 className="font-medium text-xl line-clamp-3 mb-4">
-          {property.address}
+      <div className="px-6 pt-4">
+        <h2 className="font-medium text-xl line-clamp-2 mb-3 min-h-[56px]">
+          {property.name}
         </h2>
         <span className="font-bold text-[20px] text-main-600">
           $ {formatMoney(property.price)}

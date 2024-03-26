@@ -1,13 +1,13 @@
 /** @format */
 import { twMerge } from "tailwind-merge";
 import mailImg from "~/assets/EnvelopeOpen.svg";
-import icons from "~/ultils/icons";
 import userImg from "~/assets/user.svg";
 import { useUserStore } from "~/store/useUserStore";
 import { optionsUser } from "~/ultils/constant";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, memo, useEffect, useRef, useState } from "react";
 
+import icons from "~/ultils/icons";
 const {
   FaBehance,
   FaDribbble,

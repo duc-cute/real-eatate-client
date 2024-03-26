@@ -23,14 +23,18 @@ import {
   LayoutAdmin,
   ManagePropertyType,
 } from "./pages/admin";
+import { apiGetPropertyType } from "./apis/propertyType";
+import { usePropertyStore } from "./store/usePropertyStore";
 
 /** @format */
 function App() {
   const { isShowModal } = useAppStore();
   const { getCurrent, token, current, getRoles, roles } = useUserStore();
+  const { getPropertyType } = usePropertyStore();
   useEffect(() => {
     if (token) getCurrent();
     getRoles();
+    getPropertyType({ field: "id,name,image" });
   }, []);
   return (
     <>

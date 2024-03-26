@@ -32,7 +32,7 @@ const Pagination = ({ total, limit = 12, sibling = 1 }) => {
       });
     }
     if (flag === "next") {
-      if (currentPage === Math.floor(total / limit)) return;
+      if (currentPage === Math.ceil(total / limit)) return;
       navigate({
         pathname: location.pathname,
         search: createSearchParams({ page: currentPage + 1 }).toString(),
@@ -63,7 +63,7 @@ const Pagination = ({ total, limit = 12, sibling = 1 }) => {
         <Button
           handleOnClick={() => handleNeighbo("next")}
           className={`${
-            currentPage === Math.floor(total / limit)
+            currentPage === Math.ceil(total / limit)
               ? "bg-main-100  text-gray-500 cursor-not-allowed"
               : "bg-main-500 text-white"
           } 

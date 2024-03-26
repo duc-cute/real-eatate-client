@@ -1,13 +1,14 @@
 /** @format */
 
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 const InputForm = ({
   label,
   type = "text",
   placeholder,
   disabled = false,
-  style,
+  style = "",
   id,
   errors,
   register,
@@ -15,19 +16,23 @@ const InputForm = ({
   validate,
 }) => {
   return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block mb-[6px] text-sm font-medium text-gray-900 "
-      >
-        {label}
-      </label>
+    <div className="w-full">
+      {label && (
+        <label
+          htmlFor={id}
+          className="block  mb-[6px] text-sm font-medium text-gray-900 "
+        >
+          {label}
+        </label>
+      )}
       <input
         type={type}
         id={id}
         disabled={disabled}
         {...register(id, validate)}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-main-500 block w-full p-2 "
+        className={twMerge(
+          `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-300 focus:border-main-300 block w-full p-2 ${style}`
+        )}
         placeholder={placeholder}
       />
       {errors[id] && (

@@ -2,7 +2,7 @@
 
 import { memo, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Navigation, TopHeader } from "~/components";
+import { Footer, Navigation, TopHeader } from "~/components";
 
 const LayoutPublic = () => {
   const location = useLocation();
@@ -27,6 +27,7 @@ const LayoutPublic = () => {
       <div className={location.pathname === "/" ? "pt-0" : "pt-[170px]"}>
         <Outlet />
       </div>
+      <Footer />
     </main>
   );
 };
